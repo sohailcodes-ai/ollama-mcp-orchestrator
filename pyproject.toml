@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ollama-mcp-orchestrator"
+version = "0.1.0"
+description = "A reusable Python orchestration layer for reliable Ollama tool calling with MCP, strict schema validation, bounded multi-round execution and authorization controls."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+    { name = "Sohail", email = "sohailcodes-ai@example.com" },
+]
+license = { text = "MIT" }
+dependencies = [
+    "ollama>=0.6.3,<0.7.0",
+    "fastmcp>=4.1.3,<5.0.0",
+    "jsonschema>=4.26.0,<5.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+]
+
+[project.scripts]
+ollama-mcp-orchestrator = "llm_tool_orchestrator.integration_example:chat_assistant_sync"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["llm_tool_orchestrator*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+addopts = "-q"
